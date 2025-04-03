@@ -2,13 +2,14 @@ class Walker
 {
   float x;
   float y;
+  float distribution = 5;
   
   void render()
   {
     int r = int(random(256));
     int g = int(random(256));
     int b = int(random(256));
-    int a = int(random(50, 101));  // Random alpha (50-100)
+    int a = int(random(50, 101));
     
     fill(r, g, b, a);
     noStroke();
@@ -21,14 +22,26 @@ class Walker
 
     switch (rng)
     {
-      case 0: y += 5; break;  // Down
-      case 1: y -= 5; break;  // Up
-      case 2: x += 5; break;  // Right
-      case 3: x -= 5; break;  // Left
-      case 4: x += 5; y += 5; break;  // Bottom-right
-      case 5: x -= 5; y += 5; break;  // Bottom-left
-      case 6: x += 5; y -= 5; break;  // Top-right
-      case 7: x -= 5; y -= 5; break;  // Top-left
+      case 0: y += distribution; break;  // Down
+      case 1: y -= distribution; break;  // Up
+      case 2: x += distribution; break;  // Right
+      case 3: x -= distribution; break;  // Left
+      case 4:  // Bottom-right
+        x += distribution;
+        y += distribution; 
+        break;
+      case 5: // Bottom-left
+        x -= distribution;
+        y += distribution;
+        break;  
+      case 6: // Top-right
+        x += distribution;
+        y -= distribution;
+        break;  
+      case 7: // Top-left
+        x -= distribution;
+        y -= distribution;
+        break; 
       default: break;
     }
   }
@@ -39,19 +52,19 @@ class Walker
 
     if (rng < 0.4)
     {       
-      x += 10;
+      x += distribution;
     }
     else if (rng < 0.6)
     { 
-      x -= 10;
+      x -= distribution;
     }
     else if (rng < 0.8)
     { 
-      y -= 10;
+      y -= distribution;
     }
     else
     {            
-      y += 10;
+      y += distribution;
     }
   }
 }
