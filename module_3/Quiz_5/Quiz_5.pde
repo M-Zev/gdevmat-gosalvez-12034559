@@ -14,8 +14,8 @@ void draw()
   background(255);
   
   moveAndBounce();
-  perlinWalker.render();
   perlinWalker.perlinWalk();
+  perlinWalker.render();
 }
 
 void moveAndBounce()

@@ -4,7 +4,6 @@ public class Walker
   private PVector noiseOffset; 
   private PVector colorOffset; 
   private float sizeOffset; 
-  private boolean hasStarted = false; // Prevents initial dot
 
   Walker()// Trying constructors
   {
@@ -16,8 +15,6 @@ public class Walker
 
   void render()
   {
-    if (!hasStarted) return;
-
     int r = int(map(noise(colorOffset.x), 0, 1, 0, 255));
     int g = int(map(noise(colorOffset.y), 0, 1, 0, 255));
     int b = int(map(noise(colorOffset.z), 0, 1, 0, 255));
@@ -39,6 +36,5 @@ public class Walker
     colorOffset.add(0.1f, 0.1f, 0.1f); 
     sizeOffset += 0.008f; 
 
-    hasStarted = true; // Enable rendering after movement starts
   }
 }
